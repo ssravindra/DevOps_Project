@@ -74,6 +74,22 @@ pipeline  {
         stage('Deploy_to_Docker') {
             steps{
                echo 'deploy to Docker.................'
+               sshPublisher(
+                   publishers: [
+                       sshPublisherDesc(
+                           configName: 'Absible-controlNode', 
+                           transfers: [
+                               sshTransfer(
+                                   cleanRemote: false, 
+                                   excludes: '', 
+                                   execCommand: 'ansible-playbook /opt/playbooks/DownloadDeploy-Docker.yaml -i /opt/playbooks/hosts', 
+                                   execTimeout: 120000, 
+                                )
+                            ], 
+                            usePromotionTimestamp: false, 
+                            useWorkspaceInPromotion: false, 
+                            verbose: false)])
+
             }
         }
    }
