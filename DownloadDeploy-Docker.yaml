@@ -1,0 +1,51 @@
+---
+- name: This play is to download the latest war file from nexus,create Dockerfile,Build Image and run Docker Container
+  hosts: docker
+  become: true
+
+  tasks:
+     - name: download the war file
+       shell: 'curl -u admin:Nexus -L "http://172.31.0.158:8081/service/rest/v1/search/assets/download?sort=version&repository=Devops_project_Release&maven.groupId=com.RavindraDevOpsPro&maven.artifactId=RavindraDevOps&maven.extension=war" -H "accept: application/json" --output /home/ansibleadmin/latest.war'
+       args:
+          chdir: /home/ansibleadmin
+
+
+     - name: create Dockerfile with content
+       copy:
+         dest: /home/ansibleadmin/Dockerfile
+         content: |
+                FROM tomcat:latest
+                LABEL Author = "ssravindra"
+                ADD ./latest.war /usr/local/tomcat/webapps
+                RUN chmod +x $CATALINA_HOME/bin
+                EXPOSE 8080
+                CMD ["catalina.sh","run"]
+
+
+     - name: stop running docker container
+       command: docker container stop devopslab-container
+       args:
+         chdir: /home/ansibleadmin
+       ignore_errors: yes
+
+     - name: remove stopped docker container
+       command: docker container rm devopslab-container
+       args:
+         chdir: /home/ansibleadmin
+       ignore_errors: yes
+
+     - name: remove current docker image
+       command: docker image rm devopslab-image tomcat
+       args:
+         chdir: /home/ansibleadmin
+       ignore_errors: yes
+
+     - name: build an image
+       command: sudo docker build -t devopslab-image .
+       args:
+         chdir: /home/ansibleadmin
+       ignore_errors: yes
+
+     - name: run the container
+       command: sudo docker run -d --name devopslab-container -p 8080:8080 devopslab-image
+       ignore_errors: yes
