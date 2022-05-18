@@ -1,5 +1,5 @@
 ---
-- name: This play is to download the latest war file from nexus,create Dockerfile,Build Image and run Docker Container
+- name: This play is to download the latest war file from nexus,create Dockerfile,stop-delete-running Docker conatiner,Build new Image and run Docker Container
   hosts: docker
   become: true
 
