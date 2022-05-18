@@ -27,20 +27,25 @@ pipeline  {
 
         stage('Deploy_to_nexus') {
             steps {
-               nexusArtifactUploader artifacts:
-                [[
-                    artifactId: "${ArtifactId}", 
-                    classifier: '', 
-                    file:  "target/${ArtifactId}-${Version}.war", 
-                    type: 'war'
-                ]], 
-                   credentialsId: 'nexus-login', 
-                   groupId: "${GroupId}",  
-                   nexusUrl: '172.31.0.158:8081', 
-                   nexusVersion: 'nexus3', 
-                   protocol: 'http', 
-                   repository: 'Devops_project_Snapshot', 
-                   version: "${Version}"
+                 script {
+                    
+                  def NexusRepo = Version.endsWith("SNAPSHOT") ? "Devops_project_Snapshot" : "Devops_project_Release"
+
+                    nexusArtifactUploader artifacts:
+                   [[
+                      artifactId: "${ArtifactId}", 
+                      classifier: '', 
+                      file:  "target/${ArtifactId}-${Version}.war", 
+                      type: 'war'
+                    ]], 
+                    credentialsId: 'nexus-login', 
+                    groupId: "${GroupId}",  
+                    nexusUrl: '172.31.0.158:8081', 
+                    nexusVersion: 'nexus3', 
+                    protocol: 'http', 
+                    repository: "${NexusRepo}"
+                    version: "${Version}"
+                } 
             }
         }
 
