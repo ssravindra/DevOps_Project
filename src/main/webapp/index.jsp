@@ -53,8 +53,8 @@
     <div class="container">
         <h1>Hello</h1>
         <p>This is Ravindra DevOps Project</p>
-        <p><a class="btn btn-primary btn-lg" role="button">This is the last build &raquo;</a></p>
-        <p><a class="btn btn-primary btn-lg" role="button">Successfully completed the project &raquo;</a></p>
+        <p><a class="btn btn-primary btn-lg" role="button">Success!!!&raquo;</a></p>
+        <p><a class="btn btn-primary btn-lg" role="button">learn more&raquo;</a></p>
     </div>
 </div>
 
