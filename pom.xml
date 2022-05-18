@@ -4,7 +4,7 @@
   <groupId>com.RavindraDevOpsPro</groupId>
   <artifactId>RavindraDevOps</artifactId>
   <packaging>war</packaging>
-  <version>0.0.3</version>
+  <version>0.0.4</version>
   <name>RavindraDevOpsPro</name>
   <url>http://maven.apache.org</url>
   <dependencies>

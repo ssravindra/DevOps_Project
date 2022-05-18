@@ -52,6 +52,22 @@ pipeline  {
         stage('Deploy_to_tomcat') {
             steps{
                echo 'deploy to tomcat.................'
+               sshPublisher(
+                   publishers: [
+                       sshPublisherDesc(
+                           configName: 'Absible-controlNode', 
+                           transfers: [
+                               sshTransfer(
+                                   cleanRemote: false, 
+                                   excludes: '', 
+                                   execCommand: 'ansible-playbook Download_deploy_tomcat.yaml -i hosts', 
+                                   execTimeout: 120000, 
+                                )
+                            ], 
+                            usePromotionTimestamp: false, 
+                            useWorkspaceInPromotion: false, 
+                            verbose: false)])
+
             }
         }
 
