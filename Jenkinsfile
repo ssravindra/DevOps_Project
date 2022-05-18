@@ -29,7 +29,7 @@ pipeline  {
             steps {
                  script {
                     
-                  def NexusRepo = Version.endsWith("SNAPSHOT") ? "Devops_project_Snapshot" : "Devops_project_Release"
+                  def NexusRepo = Version.endswith("SNAPSHOT") ? "Devops_project_Snapshot" : "Devops_project_Release"
 
                     nexusArtifactUploader artifacts:
                    [[
