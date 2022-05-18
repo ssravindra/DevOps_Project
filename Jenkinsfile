@@ -25,7 +25,7 @@ pipeline  {
                 [[
                     artifactId: 'RavindraDevOps', 
                     classifier: '', 
-                    file: 'RavindraDevOps-0.0.1-SNAPSHOT', 
+                    file: 'target/RavindraDevOps-0.0.1-SNAPSHOT', 
                     type: 'war'
                 ]], 
                    credentialsId: 'nexus-login', 
