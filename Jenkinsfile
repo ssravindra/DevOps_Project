@@ -3,6 +3,12 @@ pipeline  {
     tools {
         maven 'Maven'
     }
+    environment{
+        ArtifactId = readMavenPom().getArtifactId()
+        Version = readMavenPom().getVersion()
+        Name = readMavenPom().getName()
+        GroupId = readMavenPom().getGroupId()
+    }
 
    stages {
         // 1-stage
@@ -23,18 +29,18 @@ pipeline  {
             steps {
                nexusArtifactUploader artifacts:
                 [[
-                    artifactId: 'RavindraDevOps', 
+                    artifactId: "${ArtifactId}", 
                     classifier: '', 
-                    file: 'target/RavindraDevOps-0.0.1-SNAPSHOT.war', 
+                    file:  "target/${ArtifactId}-${Version}.war", 
                     type: 'war'
                 ]], 
                    credentialsId: 'nexus-login', 
-                   groupId: 'com.RavindraDevOpsPro', 
+                   groupId: "${GroupId}",  
                    nexusUrl: '172.31.0.158:8081', 
                    nexusVersion: 'nexus3', 
                    protocol: 'http', 
                    repository: 'Devops_project_Snapshot', 
-                   version: '0.0.1-SNAPSHOT'
+                   version: "${Version}"
             }
         }
 
