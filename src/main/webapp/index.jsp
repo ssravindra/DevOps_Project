@@ -32,7 +32,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Ravindra's DevOps Project</a>
+            <a class="navbar-brand" href="#">Ravindra's DevOps Project_22</a>
         </div>
         <div class="navbar-collapse collapse">
             <form class="navbar-form navbar-right" role="form">
@@ -53,8 +53,8 @@
     <div class="container">
         <h1>Hello</h1>
         <p>This is Ravindra DevOps Project</p>
-        <p><a class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
-        <p><a class="btn btn-primary btn-lg" role="button">Success!! more &raquo;</a></p>
+        <p><a class="btn btn-primary btn-lg" role="button">This is the last build &raquo;</a></p>
+        <p><a class="btn btn-primary btn-lg" role="button">Successfully completed the project &raquo;</a></p>
     </div>
 </div>
 
