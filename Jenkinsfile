@@ -36,6 +36,5 @@ pipeline  {
                echo 'deploy to Docker.................'
             }
         }
-
-
+   }
 }
